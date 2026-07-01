@@ -23,7 +23,7 @@ services:
     image: task-tracker-api:0.1.0
 
     environment:
-      DB_HOST: db
+      DB_HOST: ${DB_HOST:-db}
       DB_USER: ${POSTGRES_USER}
       DB_PASSWORD: ${POSTGRES_PASSWORD}
       DB_NAME: ${POSTGRES_DB}
@@ -45,7 +45,7 @@ services:
     depends_on:
       api:
         condition: service_started
-        
+
     restart: unless-stopped
 
 volumes:
