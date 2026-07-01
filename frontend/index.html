@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Task Tracker — add tasks and keep them saved.">
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="styles.css">
+    <title>Task Tracker</title>
+</head>
+<body>
+    <h1>Task Tracker</h1>
+    <p class="subtitle">Add your tasks. We'll keep track of them for you.</p>
+    <form id="form">
+        <label for="title" class="visually-hidden">Task title</label>
+        <input id="title" name="title" type="text" placeholder="What needs doing?" autocomplete="off" required aria-required="true" />
+        <button id="submit-btn" type="submit">Add</button>
+    </form>
+    <ul id="list" aria-live="polite" aria-relevant="additions removals">
+        <li class="empty">Loading...</li>
+    </ul>
+    <script src="app.js"></script>
+</body>
+</html>

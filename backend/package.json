@@ -1,7 +1,7 @@
 {
   "name": "task-tracker-api",
   "version": "0.1.0",
-  "description": "Task tracker REST API (Express + Postgres)",
+  "description": "Task Tracker REST API (Express + Postgres)",
   "main": "src/app.js",
   "scripts": {
     "start": "node src/app.js"
