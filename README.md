@@ -17,7 +17,7 @@ The browser only talks to the frontend. nginx serves the UI and proxies `/api/*`
 | API      | Node / Express | Task CRUD, DB retry loop on startup        |
 | Database | Postgres 16    | Persistent storage (`pgdata` named volume) |
 
-## Quick start (API + database)
+## Quick start
 
 ```bash
 git clone https://github.com/LakinduNilakshana/task-tracker.git
@@ -25,27 +25,16 @@ cd task-tracker
 cp .env.example .env   # set POSTGRES_PASSWORD
 docker compose up -d --build
 docker compose ps
-curl -s http://localhost:3000/health
-curl -s http://localhost:3000/api/tasks
+open http://localhost:8080
 ```
 
-## Frontend (standalone test)
-
-With the API stack running:
-
-```bash
-docker build -t task-tracker-frontend:0.1.0 ./frontend
-docker run -d --name task-tracker-fe --network task-tracker_default -p 8080:80 task-tracker-frontend:0.1.0
-```
-
-Open **http://localhost:8080** — add a task in the UI.
+Verify the API through the nginx proxy:
 
 ```bash
 curl -s http://localhost:8080/api/tasks
-docker rm -f task-tracker-fe
 ```
 
-> **Next:** wire `frontend` into `compose.yaml` so one `docker compose up` serves the UI on `:8080` and unpublishes the API port.
+Only the frontend is published (`8080`). The API and Postgres are internal to the Compose network.
 
 ## Persistence
 
@@ -53,6 +42,7 @@ Task data survives a normal restart:
 
 ```bash
 docker compose down && docker compose up -d
+curl -s http://localhost:8080/api/tasks   # tasks still there
 ```
 
 Wipe the database:
