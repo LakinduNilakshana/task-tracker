@@ -1,0 +1,14 @@
+# Registry-only override — use with:
+#   docker compose -f compose.yaml -f compose.ghcr.yaml pull
+#   docker compose -f compose.yaml -f compose.ghcr.yaml up -d --no-build
+
+services:
+  api:
+    build: !reset null
+    image: ghcr.io/lakindunilakshana/task-tracker-api:main
+    platform: linux/amd64
+
+  frontend:
+    build: !reset null
+    image: ghcr.io/lakindunilakshana/task-tracker-frontend:main
+    platform: linux/amd64
